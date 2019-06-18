@@ -1,0 +1,14 @@
+cls
+$anonUsername = "anonymous"
+$anonPassword = ConvertTo-SecureString -String "anonymous" -AsPlainText -Force
+$anonCredentials = New-Object System.Management.Automation.PSCredential($anonUsername,$anonPassword)
+
+$ErrorActionPreference = "Stop"
+$csv = Import-Csv "C:\Users\jesus.______\Desktop\PSEmailCSV.txt"
+foreach ($line in $csv) {
+   # $Write-Host "TEST"
+ $line.Subject 
+ $line.Body
+ $line.PSEmailID
+
+  Send-MailMessage -From "NoReply@_________.com" -To "jesus.________@____________.com" -Subject $line.subject  -Body $line.Body  -credential $anonCredentials -SmtpServer "smtprelay.______.local"
